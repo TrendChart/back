@@ -1,17 +1,15 @@
 package com.trend.back.controller
 
-import org.springframework.stereotype.Controller
-import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.GetMapping
+import com.trend.back.controller.dto.Person
+import org.springframework.web.bind.annotation.*
 
-@Controller
-class HelloWorldController {
+@RestController
+@RequestMapping(value = ["hello"])
+class HelloController {
 
-    val htmlName = "hello_world" //表示するhtmlの名前
-
-    @GetMapping("/")
-    fun root(model: Model): String {
-        model.addAttribute("hello", "hello world!")
-        return htmlName //表示するテンプレートのhtml名をreturn(.htmlはいらない)
+    @RequestMapping(value = ["/person"], method = arrayOf(RequestMethod.POST))
+    fun getPerson(@RequestBody person: Person): Person {
+        return Person(person.name, person.age)
     }
+
 }
