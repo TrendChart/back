@@ -1,6 +1,6 @@
 language: java
 sudo: false
 jdk:
-    - oraclejdk10
+    - openjdk10
 script:
     - ./gradlew test
